@@ -1,6 +1,6 @@
-from func.paramConfig import param #objeto contendo todos os parametros
-from func.pathConfig import path #objeto contendo todos os parametros
-from func.libConfig import *
+from func.paramConfig import param #object with parameters
+from func.pathConfig import path #object with path
+from func.libConfig import tf,loadTest,generate_predicoes
 
 X_test,Y_test = loadTest() #loading data
 

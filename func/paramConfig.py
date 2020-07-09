@@ -18,7 +18,7 @@ class paramConfig:
     self.inChannels     = 4             # Number of input channels, number of shots
     self.data_dsp_blk   = (5,1)         # Downsampling ratio of input
     self.modelDim       = [201,301]     # Dimension of one velocity model
-    self.modelDimSaida  = [202,302]
+    self.modelDimSaida  = [202,302]     # Dimension of output of the network
     self.label_dsp_blk  = (1,1)         # Downsampling ratio of output
     self.dh             = 10            # Space interval 
     self.posicoes_fonte =  [0,10,19,28] #posicoes da fonte que eu quero.
@@ -36,4 +36,4 @@ class paramConfig:
     self.batchSize     = 5                 # Number of batch size
     self.learnRate     = 1e-3               # Learning rate
    
-param = paramConfig() # objeto utilizado para pegar o dado
+param = paramConfig() # object param

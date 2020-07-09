@@ -6,8 +6,8 @@ from func.libConfig import *
 from func.paramConfig import param
 
 linhas=param.newDim[0]
-colunas=param.newDim[1]
-canais=param.inChannels
+colunas=608
+canais=1
 
 def apply_maxPooling(camada):
     camada = MaxPooling2D(pool_size=(2,2),padding='same') (camada)
@@ -51,8 +51,8 @@ def aumentar(camada_corrente,camada_de_reducao_correspondente,out_size):
 def create_model():
     inputs = Input((linhas,colunas,canais))
     
-#     filtros=[16,32,64,128,512]
-    filtros=[64,128,256,512,1024]
+    filtros=[16,32,64,128,512]
+#     filtros=[64,128,256,512,1024]
     c1 = reduzir(inputs,filtros[0])
     c2 = reduzir(apply_maxPooling(c1),filtros[1])
     c3 = reduzir(apply_maxPooling(c2),filtros[2])
@@ -65,7 +65,7 @@ def create_model():
     c8 = aumentar(c7,c2,filtros[1])
     c9 = aumentar_last(c8,c1,filtros[0])
     
-    c9 = Cropping2D(cropping=(99, 1)) (c9) #fiz um crop na imagem que era (400,304) e deixei com (202,302)
+    c9 = Cropping2D(cropping=(99, 153)) (c9) #fiz um crop na imagem que era (400,304) e deixei com (202,302)
     c9 = reduzir_last(c9,filtros[0])
     c9 = Conv2D(filters=1, kernel_size=(1, 1), strides=1) (c9)
 

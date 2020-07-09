@@ -37,4 +37,3 @@ from tensorflow.keras import optimizers
 from func.libsJ import generate_predicoes, save_time
 from func.loadData import loadTrain, loadTest
 from func.model import create_model
-from func.model2 import create_model2
