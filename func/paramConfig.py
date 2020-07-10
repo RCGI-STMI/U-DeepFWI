@@ -6,7 +6,7 @@ Parameters setting
 
 class paramConfig:
   def __init__(self):
-
+    	
     #####       FOLDERS OF DATASETS    ######
     self.train_data_dir = '/home/jonas/Desktop/experiments/'
     self.folder_dataset = ['georec/','vmodel/']
@@ -20,13 +20,10 @@ class paramConfig:
     self.modelDim       = [201,301]     # Dimension of one velocity model
     self.modelDimSaida  = [202,302]     # Dimension of output of the network
     self.label_dsp_blk  = (1,1)         # Downsampling ratio of output
-    self.dh             = 10            # Space interval 
     self.positions_source =  [0,10,19,28] # Positions of sources
 
-    ####################################################
     ####             NETWORK PARAMETERS             ####
-    ####################################################
-
+    
     self.useTransferLearning=False	  # Parameter of Transfer Learning
     self.epochs        = 10               # Number of epoch
     self.trainSize     = 10               # Number of training set
