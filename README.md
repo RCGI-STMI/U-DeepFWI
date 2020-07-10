@@ -7,7 +7,10 @@ Authors: [Jonas Mendonça](https://scholar.google.com.br/citations?user=B7BG9T0A
 The use of Deep Learning in the context of oil exploration represents a new direction for velocity model building techniques. In this work, we present a neural network termed U-net that can be applied to build seismic velocity models. Here we demonstrate that using only four seismograms, we can train a network that can produce accurate predictions of seismic velocity models on an independent dataset. One obstacle to using neural networks for velocity model building is the lack of sufficient data to train the networks. Thus, we also present a methodology to build pseudo-realistic velocity models. We construct a dataset of 2,000 seismic velocity models with sophisticated marine geological features, and we train and test our network with this dataset. Our results show that the neural network can accurately predict domains with multiple horizontal layers, but it struggles with more complex geological features such as faults.
 
 
-# Requirements
+# Requirements for installation
+
+In order to install the software, we need to install these packages with PIP:
+
 ```
 numpy>=1.11
 python=3.7.3
@@ -19,11 +22,6 @@ tensorflow=2.1.0
 tensorflow-gpu=2.1.0
 ```
 
-
-
-# Network Structure 
-  
-<img src="./figures/unet.png">
 
 # Training and Testing
 
@@ -50,7 +48,7 @@ Before training your network, please check the parameters present in the file fu
     ####             NETWORK PARAMETERS             ####
     ####################################################
 
-    self.useTransferLearning=False	  # Parameter of Transfer Learning
+    self.useTransferLearning=False	      # Parameter of Transfer Learning
     self.epochs        = 10               # Number of epoch
     self.trainSize     = 10               # Number of training set
     self.testSize      = 10               # Number of testing set
