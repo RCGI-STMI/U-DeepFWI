@@ -8,8 +8,8 @@ class paramConfig:
   def __init__(self):
 
     #####       FOLDERS OF DATASETS    ######
-    self.train_data_dir = '/mnt/jonas/georec_and_vmodels/'
-    self.folder_dataset = ['shots_models_simples/','vmodel/']
+    self.train_data_dir = '/home/jonas/Desktop/experiments/'
+    self.folder_dataset = ['georec/','vmodel/']
 
     #####       PARAMETERS OF MODELS   ######
     self.dataDim        = [2000,304]    # Dimension of original one-shot seismic data
@@ -27,7 +27,7 @@ class paramConfig:
     ####             NETWORK PARAMETERS             ####
     ####################################################
 
-    self.useTransferLearning=True	  # Parameter of Transfer Learning
+    self.useTransferLearning=False	  # Parameter of Transfer Learning
     self.epochs        = 10               # Number of epoch
     self.trainSize     = 10               # Number of training set
     self.testSize      = 10               # Number of testing set
