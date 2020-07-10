@@ -13,6 +13,8 @@ The use of Deep Learning in the context of oil exploration represents a new dire
 
 # Training and Testing
 
+Before training your network, please check the parameters present in the file func/ParamConfig.py. This file contains all the parameters necessary for running the network, including the transfer learning.
+
 ```
     #####       FOLDERS OF DATASETS    ######
     self.train_data_dir = '~/Desktop/experiments/'
@@ -46,7 +48,7 @@ The use of Deep Learning in the context of oil exploration represents a new dire
 
 ```
 
-After that, we can run the training / test by running the following command
+After that, we can run the training/test by running the following command
 
 ```
 python3 train.py
