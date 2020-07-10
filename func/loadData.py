@@ -6,8 +6,7 @@ warnings.filterwarnings("ignore")
 
 
 ### PARAMETERS #####
-nova_dim= param.modelDimSaida # nova dimensao de acordo com o modelo da rede
-
+nova_dim= param.modelDimSaida 
 test_size = param.testSize
 data_dim = param.dataDim
 data_dsp_blk = param.data_dsp_blk
@@ -17,7 +16,7 @@ new_dim = param.newDim
 model_dim = param.modelDim
 in_channels = param.inChannels
 start = param.modelInicial
-pos = param.posicoes_fonte # posicoes da fonte que eu quero
+pos = param.positions_source 
 
 train_data_dir = param.train_data_dir
 folder_dataset = param.folder_dataset
@@ -32,16 +31,16 @@ truthname = path.truthname
 ####   LOADING TRAINING  
 def loadTrain():
     X_train = np.zeros((train_size, new_dim[0], new_dim[1], in_channels))
-    Y_train = np.zeros((train_size, nova_dim[0],nova_dim[1] ,1)) #O y train possui apenas 1 canal
+    Y_train = np.zeros((train_size, nova_dim[0],nova_dim[1] ,1)) #O y train with 1 channel
 
     for i in range(start,start+train_size):
         filename_shot = train_data_dir+folder_dataset[0]+datafilename+str(i)+'.mat'
         data = read_shot(filename_shot,datafilename+str(i),dataname)
         data_shots = add_border_shot(data_dim,in_channels, data,pos)
        
-        #Reduzir bloco
+        #Block reduce
         for k in range (0,in_channels):
-            aux     = data_shots[:,:,k] #pegando cada shot
+            aux     = data_shots[:,:,k] # getting each shot
             aux_reduzido     = block_reduce(aux,block_size=data_dsp_blk,func=np.max)
             X_train[i-1,:,:,k] = aux_reduzido
         filename_label     = train_data_dir+folder_dataset[1]+truthfilename+str(i)+ '.mat'
@@ -64,7 +63,7 @@ def loadTest():
     
        
     cont = 0
-    for i in range(train_size+1,train_size+1+test_size): # o conjunto de teste começa depois do treinamento
+    for i in range(train_size+1,train_size+1+test_size): # The test size start after the training
         
         
         filename_shot = train_data_dir+folder_dataset[0]+datafilename+str(i)+'.mat'
@@ -72,9 +71,9 @@ def loadTest():
 
         data_shots = add_border_shot(data_dim,in_channels, data,pos)
        
-        #Reduzir bloco
+        #Block reduce
         for k in range (0,in_channels):
-            aux     = data_shots[:,:,k] #pegando cada shot
+            aux     = data_shots[:,:,k] 
             aux_reduzido     = block_reduce(aux,block_size=data_dsp_blk,func=np.max)#decimate)
             X_test[cont,:,:,k] = aux_reduzido 
         
@@ -120,7 +119,7 @@ def add_border_vmodel(vmodel):
     
 def add_border_shot(data_dim,in_channels, data,pos):
     
-    border = 3 #(2000,301) -> (2000,304) replicando as últimas colunas
+    border = 3 #(2000,301) -> (2000,304) replying the last columns
     data_shots = np.zeros((data_dim[0],data_dim[1],in_channels))
         
     contador=0
@@ -128,7 +127,7 @@ def add_border_shot(data_dim,in_channels, data,pos):
 
         if j in pos:
             aux = data[:,:,j]
-            aux2 = aux[:,301-border-1:301-1] #adicionando as bordas
+            aux2 = aux[:,301-border-1:301-1] 
             aux3 = np.concatenate((aux,aux2),axis=1)
             data_shots[:,:,contador] = aux3
             contador = contador+1
@@ -141,7 +140,7 @@ def processData(data):
     dim = 608
     new_data = np.zeros((num_models,400,dim,1))
     for i in range(num_models):
-        shots = data[i] #pegando o conjunto de shots
+        shots = data[i] 
 
         for j in range(num_channels):
             

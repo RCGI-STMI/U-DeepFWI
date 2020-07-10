@@ -8,10 +8,10 @@ X_train,Y_train= loadTrain() #loading data
 
 if param.useTransferLearning == True:
     print ('Loading model pre-trained')
-    model = tf.keras.models.load_model('models/model.h5') #salva o modelo
+    model = tf.keras.models.load_model('models/model.h5') #Applying Tranfer learning
 
 else:
-    model = create_model() # cria o modelo
+    model = create_model() 
     
 model.fit(X_train, Y_train, batch_size=param.batchSize, epochs=param.epochs)
 model.save('models/modelCurrent.h5')

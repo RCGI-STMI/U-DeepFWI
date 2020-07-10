@@ -25,7 +25,6 @@ from scipy import stats
 import tensorflow as tf
 from tensorflow.keras.models import Model#Sequential, Model
 from tensorflow.keras.layers import MaxPooling2D, Conv2D, BatchNormalization,Activation, Conv2DTranspose, Input, concatenate, Cropping2D
-from tensorflow.keras.layers import concatenate
 from tensorflow.keras import backend as K
 import matplotlib.pyplot as plt
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint

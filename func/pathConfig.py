@@ -8,7 +8,7 @@ import os
 from func.paramConfig import *
 
 ####################################################
-####                   FILENAMES               ####
+####                   FILENAMES               #####
 ####################################################
 
 # Data filename

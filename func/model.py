@@ -5,68 +5,68 @@ Created on Fri Apr 10 03:09:07 2020
 from func.libConfig import *
 from func.paramConfig import param
 
-linhas=param.newDim[0]
-colunas=608
-canais=1
+rows=param.newDim[0]
+columns=608
+channels=1
 
-def apply_maxPooling(camada):
-    camada = MaxPooling2D(pool_size=(2,2),padding='same') (camada)
-    return camada
+def apply_maxPooling(layer):
+    layer = MaxPooling2D(pool_size=(2,2),padding='same') (layer)
+    return layer
 
-def reduzir(camada,out_size):
-    camada = Conv2D(filters=out_size, kernel_size=(3, 3), input_shape=(linhas, colunas, canais), strides=1, padding='same') (camada)
-    camada = BatchNormalization() (camada)
-    camada = Activation('relu') (camada)
+def reduce(layer,out_size):
+    layer = Conv2D(filters=out_size, kernel_size=(3, 3), input_shape=(rows, columns, channels), strides=1, padding='same') (layer)
+    layer = BatchNormalization() (layer)
+    layer = Activation('relu') (layer)
     
-    camada = Conv2D(filters=out_size, kernel_size=(3, 3), input_shape=(linhas, colunas, canais), strides=1, padding='same') (camada)
-    camada = BatchNormalization() (camada)
-    camada = Activation('relu') (camada)
+    layer = Conv2D(filters=out_size, kernel_size=(3, 3), input_shape=(rows, columns, channels), strides=1, padding='same') (layer)
+    layer = BatchNormalization() (layer)
+    layer = Activation('relu') (layer)
     
-    return camada
+    return layer
 
 
-def reduzir_last(camada,out_size):
-    camada = Conv2D(filters=out_size, kernel_size=(3, 3), input_shape=(linhas, colunas, canais), strides=1, padding='same') (camada)
-    camada = BatchNormalization() (camada)
-    camada = Activation('relu') (camada)
+def reduce_last(layer,out_size):
+    layer = Conv2D(filters=out_size, kernel_size=(3, 3), input_shape=(rows, columns, channels), strides=1, padding='same') (layer)
+    layer = BatchNormalization() (layer)
+    layer = Activation('relu') (layer)
 
-    return camada
+    return layer
 
-def aumentar_last(camada_corrente,camada_de_reducao_correspondente,out_size):
-    camada = Conv2DTranspose(filters=out_size,kernel_size=(2,2),strides=2,padding='same') (camada_corrente)
-    camada = concatenate([camada,camada_de_reducao_correspondente],axis=3) #concatenate of layers
-    camada = reduzir_last(camada,out_size)
+def increase_last(current_layer,layer_of_reduction_correspondent,out_size):
+    layer = Conv2DTranspose(filters=out_size,kernel_size=(2,2),strides=2,padding='same') (current_layer)
+    layer = concatenate([layer,layer_of_reduction_correspondent],axis=3) #concatenate of layers
+    layer = reduce_last(layer,out_size)
 
-    return camada
+    return layer
 
 
-def aumentar(camada_corrente,camada_de_reducao_correspondente,out_size):
-    camada = Conv2DTranspose(filters=out_size,kernel_size=(2,2),strides=2,padding='same') (camada_corrente)
-    camada = concatenate([camada,camada_de_reducao_correspondente],axis=3) #concatenate of layers
-    camada = reduzir(camada,out_size)
+def increase(current_layer,layer_of_reduction_correspondent,out_size):
+    layer = Conv2DTranspose(filters=out_size,kernel_size=(2,2),strides=2,padding='same') (current_layer)
+    layer = concatenate([layer,layer_of_reduction_correspondent],axis=3) #concatenate of layers
+    layer = reduce(layer,out_size)
 
-    return camada
+    return layer
 
 
 def create_model():
-    inputs = Input((linhas,colunas,canais))
+    inputs = Input((rows,columns,channels))
     
-    filtros=[16,32,64,128,512]
-#     filtros=[64,128,256,512,1024]
-    c1 = reduzir(inputs,filtros[0])
-    c2 = reduzir(apply_maxPooling(c1),filtros[1])
-    c3 = reduzir(apply_maxPooling(c2),filtros[2])
-    c4 = reduzir(apply_maxPooling(c3),filtros[3])
-    c5 = reduzir(apply_maxPooling(c4),filtros[4])
+    vet_filters=[16,32,64,128,512]
+
+    c1 = reduce(inputs,vet_filters[0])
+    c2 = reduce(apply_maxPooling(c1),vet_filters[1])
+    c3 = reduce(apply_maxPooling(c2),vet_filters[2])
+    c4 = reduce(apply_maxPooling(c3),vet_filters[3])
+    c5 = reduce(apply_maxPooling(c4),vet_filters[4])
     
 
-    c6 = aumentar(c5,c4,filtros[3])
-    c7 = aumentar(c6,c3,filtros[2])
-    c8 = aumentar(c7,c2,filtros[1])
-    c9 = aumentar_last(c8,c1,filtros[0])
+    c6 = increase(c5,c4,vet_filters[3])
+    c7 = increase(c6,c3,vet_filters[2])
+    c8 = increase(c7,c2,vet_filters[1])
+    c9 = increase_last(c8,c1,vet_filters[0])
     
-    c9 = Cropping2D(cropping=(99, 153)) (c9) #fiz um crop na imagem que era (400,304) e deixei com (202,302)
-    c9 = reduzir_last(c9,filtros[0])
+    c9 = Cropping2D(cropping=(99, 153)) (c9) # crop of (400,304) to (202,302)
+    c9 = reduce_last(c9,vet_filters[0])
     c9 = Conv2D(filters=1, kernel_size=(1, 1), strides=1) (c9)
 
     model = Model(inputs=[inputs],outputs=[c9])

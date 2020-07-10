@@ -21,19 +21,20 @@ class paramConfig:
     self.modelDimSaida  = [202,302]     # Dimension of output of the network
     self.label_dsp_blk  = (1,1)         # Downsampling ratio of output
     self.dh             = 10            # Space interval 
-    self.posicoes_fonte =  [0,10,19,28] #posicoes da fonte que eu quero.
+    self.positions_source =  [0,10,19,28] # Positions of sources
 
     ####################################################
     ####             NETWORK PARAMETERS             ####
     ####################################################
-    self.useTransferLearning=True
+
+    self.useTransferLearning=True	  # Parameter of Transfer Learning
     self.epochs        = 10               # Number of epoch
     self.trainSize     = 10               # Number of training set
-    self.testSize      = 10                # Number of testing set
-    self.modelInicial   = 1                 # Initial model of training    
-    self.testBatchSize = 5                 #Number of batch testing
-    self.start_test    = self.trainSize+1   #Position of start Test, you can change manually
-    self.batchSize     = 5                 # Number of batch size
-    self.learnRate     = 1e-3               # Learning rate
+    self.testSize      = 10               # Number of testing set
+    self.modelInicial   = 1               # Initial model of training    
+    self.testBatchSize = 5                # Number of batch testing
+    self.start_test    = self.trainSize+1 # Position of start Test, you can change manually
+    self.batchSize     = 5                # Number of batch size
+    self.learnRate     = 1e-3             # Learning rate
    
-param = paramConfig() # object param
+param = paramConfig() # object param 
