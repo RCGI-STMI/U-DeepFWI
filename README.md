@@ -46,6 +46,13 @@ The use of Deep Learning in the context of oil exploration represents a new dire
 
 ```
 
+After that, we can run the training / test by running the following command
+
+```
+python3 train.py
+python3 test.py
+```
+
 # Requirements
 ```
 numpy>=1.11
