@@ -15,7 +15,6 @@ In order to install the software, we need to install these packages with PIP:
 numpy>=1.11
 python=3.7.3
 scipy
-matplotlib
 scikit-learn
 scikit-image
 tensorflow=2.1.0
