@@ -3,32 +3,18 @@
 Path setting
 @author: Jonas Mendonca (jonas.mendonca@usp.br)
 """
-
 import os
 from func.paramConfig import *
 
-####################################################
-####                   FILENAMES               #####
-####################################################
-
-# Data filename
-tagD0 = 'georec'
-tagV0 = 'vmodel'
-tagD1 = 'rec'
-tagV1 = 'vmodel'
-
-datafilename  = tagD0
-dataname      = tagD1
-truthfilename = tagV0
-truthname     = tagV1
-
-
 class pathConfig:
   def __init__(self):
-    self.datafilename  = tagD0
-    self.dataname      = tagD1
-    self.truthfilename = tagV0
-    self.truthname     = tagV1
+    ####################################################
+    ####                   FILENAMES               #####
+    ####################################################
+    self.datafilename  = 'georec'
+    self.dataname      = 'rec'
+    self.truthfilename = 'vmodel'
+    self.truthname     = 'vmodel'
     
     ###################################################
     ####                   PATHS                  #####
@@ -55,8 +41,6 @@ class pathConfig:
         os.makedirs(self.models_dir)
         self.results_dir     = self.results_dir
         self.models_dir      = self.models_dir
-
-
 
 path = pathConfig() # objeto utilizado para pegar o dado
 
