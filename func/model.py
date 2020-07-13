@@ -7,7 +7,7 @@ from func.paramConfig import param
 
 rows=param.newDim[0]
 columns=608
-channels=1
+channels=param.nclasses
 
 def apply_maxPooling(layer):
     layer = MaxPooling2D(pool_size=(2,2),padding='same') (layer)
