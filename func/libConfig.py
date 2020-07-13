@@ -20,10 +20,8 @@ from skimage.measure import block_reduce
 import tensorflow as tf
 from tensorflow.keras.models import Model#Sequential, Model
 from tensorflow.keras.layers import MaxPooling2D, Conv2D, BatchNormalization,Activation, Conv2DTranspose, Input, concatenate, Cropping2D
-from tensorflow.keras import backend as K
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.models import Model, load_model
-from tensorflow.keras import optimizers
+
 
 
 ###### Import Functions #####
