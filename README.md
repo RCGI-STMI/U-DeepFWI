@@ -7,19 +7,31 @@ Authors: [Jonas Mendonça](https://scholar.google.com.br/citations?user=B7BG9T0A
 The use of Deep Learning in the context of oil exploration represents a new direction for velocity model building techniques. In this work, we present a neural network termed U-net that can be applied to build seismic velocity models. Here we demonstrate that using only four seismograms, we can train a network that can produce accurate predictions of seismic velocity models on an independent dataset. One obstacle to using neural networks for velocity model building is the lack of sufficient data to train the networks. Thus, we also present a methodology to build pseudo-realistic velocity models. We construct a dataset of 2,000 seismic velocity models with sophisticated marine geological features, and we train and test our network with this dataset. Our results show that the neural network can accurately predict domains with multiple horizontal layers, but it struggles with more complex geological features such as faults.
 
 
-# Requirements for installation
+# Installation process
 
-In order to install the software, we need to install these packages with PIP:
+In this experiment we use `python 3.8`
 
+### Installing Virtualenv
 ```
-numpy>=1.11
-python=3.7.3
-scipy
-scikit-learn
-scikit-image
-tensorflow=2.1.0
-tensorflow-gpu=2.1.0
+pip install virtualenv
 ```
+
+### Creating and activating VirtualEnv, in this case we will called U-env
+```
+virtualenv -p python3 U-env
+source U-env/bin/activate
+```
+### Get the code in github
+```
+git clone https://github.com/RCGI-STMI/U-DeepFWI
+cd U-DeepFWI/
+```
+### Installing Requirements 
+```
+pip install -r requirements.txt
+```
+
+And now, your installation and code are finish. 
 
 
 # Training and Testing

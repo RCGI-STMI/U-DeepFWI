@@ -23,7 +23,7 @@ def loadTest():
     position = 0
 
     for i in range(param.trainSize+1,param.trainSize+1+param.testSize): # The test size start after the training       
-        X_train = get_shot(i,position,X_test   
+        X_train = get_shot(i,position,X_test)   
         vmodel = read_vmodel(i)
         Y_test[position,:,:,:] = vmodel
         position +=1
