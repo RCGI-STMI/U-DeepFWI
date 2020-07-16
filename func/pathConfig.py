@@ -20,27 +20,12 @@ class pathConfig:
     ####                   PATHS                  #####
     ###################################################
     self.main_dir = './'
-    
-    ## Create Results and Models path
-    if os.path.exists('./results/'):
-        self.results_dir     = self.main_dir + 'results/' 
-    if os.path.exists('./models/'):
-        self.models_dir      = self.main_dir + 'models/'
-    else:
-        os.makedirs('./results/')
-        os.makedirs('./models/')
-        self.results_dir     = self.main_dir + 'results/'
-        self.models_dir      = self.main_dir + 'models/'
 
 
-    if os.path.exists(self.results_dir) and os.path.exists(self.models_dir):  
-        self.results_dir     = self.results_dir
-        self.models_dir      = self.models_dir 
-    else:
-        os.makedirs(self.results_dir)
-        os.makedirs(self.models_dir)
-        self.results_dir     = self.results_dir
-        self.models_dir      = self.models_dir
+    os.makedirs('./results/', exist_ok=True)
+    os.makedirs('./models/', exist_ok=True)
+    self.results_dir     = self.main_dir + 'results/'
+    self.models_dir      = self.main_dir + 'models/'
 
 path = pathConfig() # objeto utilizado para pegar o dado
 
