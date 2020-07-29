@@ -36,7 +36,7 @@ def read_vmodel(i):
     filename_label     = param.train_data_dir+param.folder_dataset[1]+path.truthfilename+str(i)+ '.mat'
     print (path.truthfilename+str(i))
     vmodel          = sio.loadmat(filename_label)
-    vmodel          =vmodel[str(path.truthname)]
+    vmodel          =vmodel[str(path.truthname)]/1000
     vmodel = add_border_vmodel(vmodel).reshape(param.modelDimSaida[0],param.modelDimSaida[1],1)
     return vmodel
 
