@@ -47,7 +47,7 @@ def get_shot(i,position,dataset):
     shots = add_border_shot(param.dataDim,param.inChannels, data)
     dataset =apply_block_reduce(dataset,shots,position)
    
-    return dataset;
+    return dataset
 
 def apply_block_reduce(X_train,shots,position):#Block reduce
     for k in range (0,param.inChannels):
