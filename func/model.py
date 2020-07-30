@@ -2,7 +2,7 @@
 Created on Fri Apr 10 03:09:07 2020
 @author: jonas
 """
-from func.libConfig import *
+from func.libConfig import MaxPooling2D, Conv2D,Activation,BatchNormalization,concatenate,Conv2DTranspose,Input,Cropping2D, Model
 from func.paramConfig import param
 
 rows=param.newDim[0]
