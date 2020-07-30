@@ -3,3 +3,5 @@
 *.mat
 .cache
 /models
+/results
+.idea/

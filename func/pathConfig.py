@@ -20,8 +20,6 @@ class pathConfig:
     ####                   PATHS                  #####
     ###################################################
     self.main_dir = './'
-
-
     os.makedirs('./results/', exist_ok=True)
     os.makedirs('./models/', exist_ok=True)
     self.results_dir     = self.main_dir + 'results/'
