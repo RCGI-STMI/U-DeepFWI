@@ -9,8 +9,8 @@ Import libraries
 ################################################
 
 import warnings
-import os, sys
-import  time
+import os,sys
+import time
 sys.path.append(os.getcwd())
 import numpy as np
 import scipy.io as sio
